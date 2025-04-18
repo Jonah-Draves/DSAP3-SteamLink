@@ -1,3 +1,6 @@
+#pragma once
+#include "sorts.h"
+
 #include <iostream>
 #include <vector>
 #include <string>
@@ -35,7 +38,9 @@ int getSimilarity(const vector<string>& baseTags, const vector<string>& targetTa
 }
 
 int main() {
-    vector<string> b = {"Adventure", "Fantasy", "Sci-Fi"};
+
+    /*Tests for similarity
+     *vector<string> b = {"Adventure", "Fantasy", "Sci-Fi"};
     vector<string> t = {"Action", "Fantasy", "Graphic", "Mythology", "Sci-Fi"};
 
     cout << getSimilarity(b, t) << endl;
@@ -43,7 +48,24 @@ int main() {
     vector<string> b2 = {"Adventure", "Fantasb", "Sci-Fi"};
     vector<string> t2 = {"Action", "Fantasy"};
 
-    cout << getSimilarity(b2, t2) << endl;
+    cout << getSimilarity(b2, t2) << endl;*/
+
+    vector<pair<string, int>> sample;
+    sample.push_back({"01001", 1});
+    sample.push_back({"01112", 0});
+    sample.push_back({"01003", 3});
+    sample.push_back({"04", 4});
+    sample.push_back({"0005", 3});
+    sample.push_back({"006", 2});
+    sample.push_back({"01", 1});
+    sample.push_back({"010123", 0});
+    sample.push_back({"01116", 2});
+    sample.push_back({"17", 1});
+    quickSort(sample, 0, (int)sample.size() - 1);
+
+    for (auto iter : sample) {
+        cout << iter.first << " " << iter.second << endl;
+    }
 
     return 0;
 }
