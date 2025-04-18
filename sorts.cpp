@@ -26,13 +26,17 @@ int partition(vector<pair<string, int>>& sList, int low, int high) {
     swap(sList[low], sList[down]);
     return down;
 }
-void quickSort(vector<pair<string, int>>& sList, int low, int high) {
+void quickSortHelper(vector<pair<string, int>>& sList, int low, int high) {
     /*
      Given a list of string, int pairs, reorganizes that list in descending int order
     */
     if (low < high) {
         int pivot = partition(sList, low, high);
-        quickSort(sList, low, pivot - 1);
-        quickSort(sList, pivot + 1, high);
+        quickSortHelper(sList, low, pivot - 1);
+        quickSortHelper(sList, pivot + 1, high);
     }
+}
+
+void quickSort(vector<pair<string, int>>& sList) {
+    quickSortHelper(sList, 0, sList.size() - 1);
 }

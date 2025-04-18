@@ -61,7 +61,7 @@ int main() {
     sample.push_back({"010123", 0});
     sample.push_back({"01116", 2});
     sample.push_back({"17", 1});
-    quickSort(sample, 0, (int)sample.size() - 1);
+    quickSort(sample);
 
     for (auto iter : sample) {
         cout << iter.first << " " << iter.second << endl;
