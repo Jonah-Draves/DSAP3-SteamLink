@@ -61,9 +61,16 @@ int main() {
     sample.push_back({"010123", 0});
     sample.push_back({"01116", 2});
     sample.push_back({"17", 1});
+    vector<pair<string, int>> sample2 = sample;
     quickSort(sample);
 
+    cout << "QuickSort:" << endl;
     for (auto iter : sample) {
+        cout << iter.first << " " << iter.second << endl;
+    }
+    vector<pair<string, int>> sorted = heapSort(sample2);
+    cout << "HeapSort:" << endl;
+    for (auto iter : sorted) {
         cout << iter.first << " " << iter.second << endl;
     }
 
