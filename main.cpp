@@ -8,42 +8,6 @@
 using namespace std;
 
 
-int loadDataSet(string filename){
-
-        vector<vector<string>> dataset; //data is stored in a vector of vectors
-        //each vector in this vector goes as follows: <ID, Title, Genre, Tags>
-        ifstream file(filename);
-
-        if (!file.is_open()) {  //if the requested file is not valid
-                cout << "Could not open " << filename << endl;
-                return 0;
-        }
-        string currentline;
-        int counter = 0;
-        while (getline(file, currentline)){//Read each line of the file and extract the desired cells
-                stringstream ss(currentline);
-                string cell;
-                //cout << "FullLine: " << currentline << endl << endl << endl;
-                vector<string> cellvector;
-                for(int i=0; getline(ss, cell, '|'); i++){
-                        if (i == 0) cellvector.push_back(cell);//cout << "ID: " << cell << endl;
-                        if (i == 1) cellvector.push_back(cell);//cout << "Title: " << cell << endl;
-                        if (i == 35) cellvector.push_back(cell);//cout << "Genre: " << cell << endl;
-                        if (i == 36) cellvector.push_back(cell);//cout << "Tags: " << cell << endl;
-                        counter++;
-                }
-                if (counter == 4){
-                        dataset.push_back(cellvector);
-                        counter = 0;
-                        cellvector.erase(cellvector.begin(), cellvector.end());
-                }
-        //cout << endl << endl << endl;
-
-        }
-        cout << "Database loaded" << endl;
-        return 0;
-
-}
 
 int getSimilarity(const vector<string>& baseTags, const vector<string>& targetTags) {
     /*
