@@ -54,7 +54,7 @@ vector<GameNode*> similarityList(GameNode* base, unordered_set<> dataset)
         }
     
 }
-
+/*
 int main() {
 
     /*Tests for similarity
@@ -94,8 +94,8 @@ int main() {
 
     return 0;
 }
+*/
 
-/*
 int main() { //USER INTERFACE
 
         while (true) //menu loop
@@ -125,4 +125,4 @@ int main() { //USER INTERFACE
 
 
 }
-*/
+
