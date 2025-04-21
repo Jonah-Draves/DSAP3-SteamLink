@@ -39,6 +39,22 @@ int getSimilarity(const vector<string>& baseTags, const vector<string>& targetTa
     return similarity;
 }
 
+
+vector<GameNode*> similarityList(GameNode* base, unordered_set<> dataset)
+{
+    vector<pair<int, GameNode>> unsorted;
+    
+    for(auto game = dataset.begin(); game != dataset.end(); game++)//iterate through data points and add to list
+        {
+            if (game != base)
+            {
+                int similarity = getSimilarity(base->tags, game->tags); //get the similarity of the base game and currently selected game
+                unsorted.push_back(similarity, game);
+            }
+        }
+    
+}
+
 int main() {
 
     /*Tests for similarity
