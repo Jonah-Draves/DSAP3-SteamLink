@@ -78,3 +78,24 @@ int main() {
 
     return 0;
 }
+
+/*
+int main() { //USER INTERFACE
+
+        while (true) //menu loop
+        {
+                string game;
+                string num;
+                cout << "Please enter the game: ";
+                getline(cin, game);
+                cout << game << " Selected" << endl;
+                cout << "How many similar games would you like to find?" << endl;
+                getline(cin, num);
+                cout << "Finding " << num << " similar games to: " << game << endl;
+                cout << "Sample Output" << endl << "1. " << endl << "2. " << endl << "3. " << endl;
+
+        }
+
+
+}
+*/
