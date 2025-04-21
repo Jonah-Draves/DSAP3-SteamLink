@@ -94,6 +94,17 @@ int main() { //USER INTERFACE
                 cout << "Finding " << num << " similar games to: " << game << endl;
                 cout << "Sample Output" << endl << "1. " << endl << "2. " << endl << "3. " << endl;
 
+                //Below is some pseudocode for the computation of the n most similar games
+                //data = loadDataBase("data.csv");
+                //similarityList = computeSimilar(data);
+                //quicksort = QuickSort(similarityList);
+                //heapsort = HeapSort(similarityList);
+                //
+                //for(int i=0; i<num; i++)//Output n results
+                //{
+                    //cout << i << ": " << quicksort[num] or heapsort[num] << endl;
+                //}
+                
         }
 
 
