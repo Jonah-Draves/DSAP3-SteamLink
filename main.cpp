@@ -56,6 +56,20 @@ vector<pair<int, GameNode*>> similarityList(GameNode* base, unordered_set<> data
     return similarityList;
 }
 
+GameNode* findNode(string title, unordered_set<> dataset){
+    //searches the database and returns the GameNode with matching title
+
+    for(auto game = dataset.begin(); game != dataset.end(); game++)//iterate through data points and add to list
+        {
+            if (game->title == title)//if the game is not a duplicate of the one requested, then compare the two and store in the vector
+            {
+                   return game;
+            }
+        }
+    return nullptr;
+    
+}
+
 /*
 int main() {
 
