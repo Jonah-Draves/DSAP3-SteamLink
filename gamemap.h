@@ -22,7 +22,7 @@ class GameMap {
 
     unordered_map<string,GameNode> map;
 
-    map<string,string> name2id;
+    std::map<string,string> name2id;
 
     vector<string> splitList(string& str);
 

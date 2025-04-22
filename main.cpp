@@ -3,7 +3,7 @@
 #include <utility>
 #include "gamemap.cpp"
 #include "sorts.cpp"
-
+#include <map>
 using namespace std;
 
 int main() { //USER INTERFACE
@@ -26,10 +26,10 @@ int main() { //USER INTERFACE
 
 
 		cout << "Computing Similarity List" << endl;
-                vector<pair<string, int>> similarity = map.similarityList("1178150");//get the GameNode object of desired game, then generate a similarity list
-		//for (auto it : similarity){
-			//cout << endl << "Title: " << it.first << endl << " Similarity: " << it.second << endl;
-		//}
+                vector<pair<string, int>> similarity = map.similarityList("Galactic Bowling");//get the GameNode object of desired game, then generate a similarity list
+		for (auto it : similarity){
+			cout << endl << "Title: " << it.first << endl << " Similarity: " << it.second << endl;
+		}
 		cout << "Done." << endl;
                 //
                 //for(int i=0; i<num; i++)//Output n results

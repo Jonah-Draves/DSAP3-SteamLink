@@ -1,3 +1,4 @@
+#include <map>
 #include "gamemap.h"
 
 
@@ -171,10 +172,10 @@ vector<pair<string, int>> GameMap::similarityList(string appid)
     for(auto game = map.begin(); game != map.end(); game++)//iterate through data points and add to list
         {
 	    //cout << game->second.name;
-            if (game->second.appID != appid)//if the game is not a duplicate of the one requested, then compare the two and store in the vector
+            if (game->second.name != appid)//if the game is not a duplicate of the one requested, then compare the two and store in the vector
             {
                 vector<string> basetraits = getAllTraits(appid);
-		vector<string> comparetraits = getAllTraits(game->second.appID);
+		vector<string> comparetraits = getAllTraits(game->second.name);
 
 		int similarity = getSimilarity(basetraits, comparetraits);
 
