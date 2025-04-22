@@ -41,7 +41,7 @@ int getSimilarity(const vector<string>& baseTags, const vector<string>& targetTa
 }
 
 
-vector<pair<int, GameNode>> similarityList(GameNode base, GameMap data)
+vector<pair<string, int>> similarityList(string appid, GameMap data)
 {
     vector<pair<int, GameNode>> similarityList;
     
@@ -49,10 +49,10 @@ vector<pair<int, GameNode>> similarityList(GameNode base, GameMap data)
         {
             if (game != base)//if the game is not a duplicate of the one requested, then compare the two and store in the vector
             {
-                int similarityTags = getSimilarity(base->tags, game->tags); //get the similarity of the base game and currently selected game
-                int similaritsyGenre = getSimilarity(base->genre, game->genre); //get the similarity of the base game and currently selected game
-                int similarityCategory = getSimilarity(base->category, game->category); //get the similarity of the base game and currently selected game
-                unsorted.push_back((similarityTags + similarityGenre + similarityCategory)/3), game);//average the similarity for all 3 similarity metrics and push to similarity list
+                vector<string> basetraits = getAllTraits(appid);
+                vector<string> comparetraits = getAllTraits(game->appID);
+                int similarity = getSimilarity(basetraits, comparetraits); //get the similarity of the base game and currently selected game
+                unsorted.push_back(make_pair(game->name, similarity);//average the similarity for all 3 similarity metrics and push to similarity list
             }
         }
 
