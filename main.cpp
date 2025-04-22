@@ -116,7 +116,9 @@ int main() {
 */
 
 int main() { //USER INTERFACE
-        GameMap map = GameMap.generateMap("data.csv)
+        GameMap map;
+        generateMap("games.csv");
+
         while (true) //menu loop
         {
                 string game;
@@ -129,18 +131,15 @@ int main() { //USER INTERFACE
                 cout << "Finding " << num << " similar games to: " << game << endl;
 
                 //Below is the code for the computation of the n most similar games
-                GameNode desiredNode = findNode(game, map)
-                vector<string> similarity = similarityList(desiredNode, map);//get the GameNode object of desired game, then generate a similarity list
-                quicksort = QuickSort(similarityList);//Feed the similarity list to sorting algorithms
-                heapsort = HeapSort(similarityList);
+                //GameNode desiredNode = findNode(game, map)
+                //vector<string> similarity = similarityList(desiredNode, map);//get the GameNode object of desired game, then generate a similarity list
+                //quicksort = QuickSort(similarityList);//Feed the similarity list to sorting algorithms
+                //heapsort = HeapSort(similarityList);
                 //
                 //for(int i=0; i<num; i++)//Output n results
                 //{
                     //cout << i << ": " << quicksort[num] or heapsort[num] << endl;
                 //}
-                
         }
-
-
 }
 
