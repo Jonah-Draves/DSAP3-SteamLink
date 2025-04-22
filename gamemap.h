@@ -6,6 +6,7 @@
 #include <fstream>
 #include <set>
 #include <utility>
+#include <map>
 
 using namespace std;
 
@@ -14,13 +15,14 @@ class GameMap {
     struct GameNode {
         string appID;
         string name;
+        vector<std::string> category;
         vector<std::string> genre;
         vector<std::string> tags;
-        vector<std::string> traits;
-
     };
 
     unordered_map<string,GameNode> map;
+
+    map<string,string> name2id;
 
     vector<string> splitList(string& str);
 
