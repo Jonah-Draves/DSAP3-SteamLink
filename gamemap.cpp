@@ -45,7 +45,7 @@ vector<string> splitRow(string& str) {
 void GameMap::insert(vector<string> data) {
     GameNode node;
 
-    if (data.size()!=40) {
+    if (data.size()!=6) {
         cerr << "Warning: Data parsing error" << endl;
         return;
     }
@@ -64,10 +64,10 @@ void GameMap::insert(vector<string> data) {
     string tagsStr;
     string genreStr;
     string traitStr;
-    if (!data[35].empty() || !data[36].empty() || !data[37].empty()) {
-        genreStr = data[35];
-        tagsStr = data[36];
-        traitStr = data[37];
+    if (!data[2].empty() || !data[3].empty() || !data[4].empty()) {
+        genreStr = data[2];
+        tagsStr = data[3];
+        traitStr = data[4];
     }
     else
         return; // dont add game if tag AND screenshot empty
@@ -109,4 +109,21 @@ GameMap generateMap(string filename) {
     cout << "Loaded " << gameMap.getCount() << " games." << endl;
 
     return gameMap;
+}
+
+vector<string> GameMap::getAllTraits(string appID_) {
+    set<string> traitSet;
+    vector<string> traitVec;
+
+    for (string tag : map[appID_].tags)
+        traitSet.insert(tag);
+    for (string cat : map[appID_].category)
+        traitSet.insert(cat);
+    for (string genre : map[appID_].genre)
+        traitSet.insert(genre);
+
+    for (string trait : traitSet)
+        traitVec.push_back(trait);
+
+    return traitVec;
 }
