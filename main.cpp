@@ -4,7 +4,8 @@
 #include <iostream>
 #include <vector>
 #include <string>
-
+#include "gamemap.cpp"
+#include "gamemap.h"
 using namespace std;
 
 
@@ -40,11 +41,11 @@ int getSimilarity(const vector<string>& baseTags, const vector<string>& targetTa
 }
 
 
-vector<pair<int, GameNode*>> similarityList(GameNode* base, unordered_set<> dataset)
+vector<pair<int, GameNode>> similarityList(GameNode base, GameMap data)
 {
-    vector<pair<int, GameNode*>> similarityList;
+    vector<pair<int, GameNode>> similarityList;
     
-    for(auto game = dataset.begin(); game != dataset.end(); game++)//iterate through data points and add to list
+    for(auto game = data->map.begin(); game != data->map.end(); game++)//iterate through data points and add to list
         {
             if (game != base)//if the game is not a duplicate of the one requested, then compare the two and store in the vector
             {
@@ -58,10 +59,10 @@ vector<pair<int, GameNode*>> similarityList(GameNode* base, unordered_set<> data
     return similarityList;
 }
 
-GameNode* findNode(string title, unordered_set<> dataset){
+GameNode findNode(string title, GameMap data){
     //searches the database and returns the GameNode with matching title
 
-    for(auto game = dataset.begin(); game != dataset.end(); game++)//iterate through data points and add to list
+    for(auto game = data->map.begin(); game != data->map.end(); game++)//iterate through data points and add to list
         {
             if (game->title == title)//if the game is not a duplicate of the one requested, then compare the two and store in the vector
             {
@@ -115,7 +116,7 @@ int main() {
 */
 
 int main() { //USER INTERFACE
-
+        GameMap map = GameMap.generateMap("data.csv)
         while (true) //menu loop
         {
                 string game;
@@ -128,11 +129,11 @@ int main() { //USER INTERFACE
                 cout << "Finding " << num << " similar games to: " << game << endl;
                 cout << "Sample Output" << endl << "1. " << endl << "2. " << endl << "3. " << endl;
 
-                //Below is some pseudocode for the computation of the n most similar games
-                //data = loadDataBase("data.csv");
-                //similarityList = computeSimilar(data);
-                //quicksort = QuickSort(similarityList);
-                //heapsort = HeapSort(similarityList);
+                //Below is the code for the computation of the n most similar games
+                GameNode desiredNode = findNode(game, map)
+                vector<string> similarity = similarityList(desiredNode, map);
+                quicksort = QuickSort(similarityList);
+                heapsort = HeapSort(similarityList);
                 //
                 //for(int i=0; i<num; i++)//Output n results
                 //{
