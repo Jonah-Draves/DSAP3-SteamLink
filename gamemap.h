@@ -32,7 +32,7 @@ public:
 
     int getCount();
 
-    vector<string> getAllTraits(string appID_);
+    vector<string> getAllTraits(string title);
 
     vector<pair<string, int>> similarityList(string appid);
 };
