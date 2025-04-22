@@ -5,6 +5,7 @@
 #include <iostream>
 #include <fstream>
 #include <set>
+#include <utility>
 
 using namespace std;
 
@@ -31,8 +32,11 @@ public:
 
     vector<string> getAllTraits(string appID_);
 
+    vector<pair<string, int>> similarityList(string appid);
 };
 
 vector<string> splitRow(string& str);
 
 GameMap generateMap(string filename);
+
+vector<pair<string, int>> similarityList(string appid);

@@ -85,6 +85,36 @@ int GameMap::getCount() {
     return map.size();
 }
 
+int getSimilarity(const vector<string>& baseTags, const vector<string>& targetTags) {
+    /*
+    Given two vectors of string game tags, returns an int representing how many strings were
+    found in both vectors.
+
+    Assumptions:
+    Both vectors are in alphabetical order, as is default for our dataset.
+    */
+    int similarity = 0;
+    auto baseIter = baseTags.begin();
+    auto targetIter = targetTags.begin();
+    while (baseIter != baseTags.end() && targetIter != targetTags.end()) {
+        if ((*baseIter).size() == (*targetIter).size()) {
+            if (*baseIter == *targetIter) {
+                similarity++;
+                baseIter++;
+                targetIter++;
+                continue;
+            }
+        }
+        if (*baseIter < *targetIter) {
+            baseIter++;
+        }
+        else {
+            targetIter++;
+        }
+    }
+    return similarity;
+}
+
 GameMap generateMap(string filename) {
     GameMap gameMap;
 
@@ -117,8 +147,6 @@ vector<string> GameMap::getAllTraits(string appID_) {
 
     for (string tag : map[appID_].tags)
         traitSet.insert(tag);
-    for (string cat : map[appID_].category)
-        traitSet.insert(cat);
     for (string genre : map[appID_].genre)
         traitSet.insert(genre);
 
@@ -126,4 +154,25 @@ vector<string> GameMap::getAllTraits(string appID_) {
         traitVec.push_back(trait);
 
     return traitVec;
+}
+
+vector<pair<string, int>> GameMap::similarityList(string appid)
+{
+    vector<pair<string, int>> similarityList;
+
+    for(auto game = map.begin(); game != map.end(); game++)//iterate through data points and add to list
+        {
+	    //cout << game->second.name;
+            if (game->second.appID != appid)//if the game is not a duplicate of the one requested, then compare the two and store in the vector
+            {
+                vector<string> basetraits = getAllTraits(appid);
+		vector<string> comparetraits = getAllTraits(game->second.appID);
+
+		int similarity = getSimilarity(basetraits, comparetraits);
+
+                similarityList.push_back(make_pair(game->second.name, similarity));//average the similarity for all 3 similarity metrics and push to similarity list
+            }
+        }
+
+    return similarityList;
 }
