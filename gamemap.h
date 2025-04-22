@@ -7,6 +7,7 @@
 #include <set>
 #include <utility>
 #include <map>
+#include <algorithm>
 
 #include "sorts.h"
 
