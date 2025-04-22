@@ -7,7 +7,7 @@ using namespace std;
 
 int main() { //USER INTERFACE
 
-	GameMap map = generateMap("games_cleaned.csv");
+	GameMap map = generateMap("games_cleaned_3.csv");
 
 //        while (true) //menu loop
   //      {
