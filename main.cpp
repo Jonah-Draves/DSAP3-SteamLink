@@ -127,12 +127,11 @@ int main() { //USER INTERFACE
                 cout << "How many similar games would you like to find?" << endl;
                 getline(cin, num);
                 cout << "Finding " << num << " similar games to: " << game << endl;
-                cout << "Sample Output" << endl << "1. " << endl << "2. " << endl << "3. " << endl;
 
                 //Below is the code for the computation of the n most similar games
                 GameNode desiredNode = findNode(game, map)
-                vector<string> similarity = similarityList(desiredNode, map);
-                quicksort = QuickSort(similarityList);
+                vector<string> similarity = similarityList(desiredNode, map);//get the GameNode object of desired game, then generate a similarity list
+                quicksort = QuickSort(similarityList);//Feed the similarity list to sorting algorithms
                 heapsort = HeapSort(similarityList);
                 //
                 //for(int i=0; i<num; i++)//Output n results
