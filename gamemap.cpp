@@ -61,24 +61,27 @@ void GameMap::insert(vector<string> data) {
         return; // dont add empty name games
 
 
+    string catStr;
     string tagsStr;
     string genreStr;
-    string traitStr;
     if (!data[2].empty() || !data[3].empty() || !data[4].empty()) {
-        genreStr = data[2];
-        tagsStr = data[3];
-        traitStr = data[4];
+        catStr = data[2];
+	genreStr = data[3];
+        tagsStr = data[4];
+        
     }
     else
         return; // dont add game if tag AND screenshot empty
 
     node.appID = appIDStr;
     node.name = nameStr;
+    node.category = splitList(catStr);
     node.genre = splitList(genreStr);
     node.tags = splitList(tagsStr);
-    node.traits = splitList(traitStr);
 
     map[appIDStr] = node;
+
+    name2id[nameStr] = appIDStr;
 }
 
 int GameMap::getCount() {
@@ -141,14 +144,19 @@ GameMap generateMap(string filename) {
     return gameMap;
 }
 
-vector<string> GameMap::getAllTraits(string appID_) {
+vector<string> GameMap::getAllTraits(string title) {
+	
+    string id = name2id[title];
+	
     set<string> traitSet;
     vector<string> traitVec;
 
-    for (string tag : map[appID_].tags)
+    for (string tag : map[id].tags)
         traitSet.insert(tag);
-    for (string genre : map[appID_].genre)
+    for (string genre : map[id].genre)
         traitSet.insert(genre);
+    for (string cat : map[id].category)
+        traitSet.insert(cat);
 
     for (string trait : traitSet)
         traitVec.push_back(trait);
