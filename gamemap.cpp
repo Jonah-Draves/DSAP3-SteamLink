@@ -166,14 +166,14 @@ vector<string> GameMap::getAllTraits(string title) {
     return traitVec;
 }
 
-vector<pair<string, int>> GameMap::similarityList(string appid)
+vector<pair<string, int>> GameMap::similarityList(string name)
 {
     vector<pair<string, int>> similarityList;
-    vector<string> basetraits = getAllTraits(appid);
+    vector<string> basetraits = getAllTraits(name);
     for(auto game = map.begin(); game != map.end(); game++)//iterate through data points and add to list
         {
 	    //cout << game->second.name;
-            if (game->second.name != appid)//if the game is not a duplicate of the one requested, then compare the two and store in the vector
+            if (game->second.name != name)//if the game is not a duplicate of the one requested, then compare the two and store in the vector
             {
 		        vector<string> comparetraits = getAllTraits(game->second.name);
 
