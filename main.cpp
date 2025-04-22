@@ -48,8 +48,10 @@ vector<pair<int, GameNode*>> similarityList(GameNode* base, unordered_set<> data
         {
             if (game != base)//if the game is not a duplicate of the one requested, then compare the two and store in the vector
             {
-                int similarity = getSimilarity(base->tags, game->tags); //get the similarity of the base game and currently selected game
-                unsorted.push_back(similarity, game);
+                int similarityTags = getSimilarity(base->tags, game->tags); //get the similarity of the base game and currently selected game
+                int similaritsyGenre = getSimilarity(base->genre, game->genre); //get the similarity of the base game and currently selected game
+                int similarityCategory = getSimilarity(base->category, game->category); //get the similarity of the base game and currently selected game
+                unsorted.push_back((similarityTags + similarityGenre + similarityCategory)/3), game);//average the similarity for all 3 similarity metrics and push to similarity list
             }
         }
 
