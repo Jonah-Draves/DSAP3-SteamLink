@@ -59,17 +59,6 @@ vector<pair<int, GameNode>> similarityList(GameNode base, GameMap data)
     return similarityList;
 }
 
-GameNode findNode(string title, GameMap data){
-    //searches the database and returns the GameNode with matching title
-
-    for(auto game = data->map.begin(); game != data->map.end(); game++)//iterate through data points and add to list
-        {
-            if (game->title == title)//if the game is not a duplicate of the one requested, then compare the two and store in the vector
-            {
-                   return game;
-            }
-        }
-    return nullptr;
     
 }
 
