@@ -4,6 +4,7 @@
 #include <sstream>
 #include <iostream>
 #include <fstream>
+#include <set>
 
 using namespace std;
 
@@ -27,6 +28,8 @@ public:
     void insert(vector<string> data);
 
     int getCount();
+
+    vector<string> getAllTraits(string appID_);
 
 };
 
