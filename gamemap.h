@@ -8,6 +8,8 @@
 #include <utility>
 #include <map>
 
+#include "sorts.h"
+
 using namespace std;
 
 class GameMap {
@@ -35,6 +37,8 @@ public:
     vector<string> getAllTraits(string title);
 
     vector<pair<string, int>> similarityList(string appid);
+
+    vector<pair<string, int>> nClosest(string ID, int n, bool heapSort = true);
 };
 
 vector<string> splitRow(string& str);
@@ -42,3 +46,4 @@ vector<string> splitRow(string& str);
 GameMap generateMap(string filename);
 
 vector<pair<string, int>> similarityList(string appid);
+

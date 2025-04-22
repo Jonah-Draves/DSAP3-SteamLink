@@ -168,20 +168,40 @@ vector<string> GameMap::getAllTraits(string title) {
 vector<pair<string, int>> GameMap::similarityList(string appid)
 {
     vector<pair<string, int>> similarityList;
-
+    vector<string> basetraits = getAllTraits(appid);
     for(auto game = map.begin(); game != map.end(); game++)//iterate through data points and add to list
         {
 	    //cout << game->second.name;
             if (game->second.name != appid)//if the game is not a duplicate of the one requested, then compare the two and store in the vector
             {
-                vector<string> basetraits = getAllTraits(appid);
-		vector<string> comparetraits = getAllTraits(game->second.name);
+		        vector<string> comparetraits = getAllTraits(game->second.name);
 
-		int similarity = getSimilarity(basetraits, comparetraits);
+		        int similarity = getSimilarity(basetraits, comparetraits);
 
                 similarityList.push_back(make_pair(game->second.name, similarity));//average the similarity for all 3 similarity metrics and push to similarity list
             }
         }
 
     return similarityList;
+}
+
+vector<pair<string, int>> GameMap::nClosest(string targetID, int n, bool useHeap) {
+    /*
+    Given a strong game ID, int number of closest games, and a bool to choose the number of closest games,
+    returns the n closest games in terms of similarity score to that of the target.
+    */
+    vector<pair<string, int>> sorted;
+    if (useHeap) {
+        vector<pair<string, int>> sList = similarityList(targetID);
+         sorted = heapSort(sList);
+    }
+    else {
+        sorted = similarityList(targetID);
+        quickSort(sorted);
+    }
+    vector<pair<string, int>> nClosest;
+    for (int i = 0; i < n; i++) {
+        nClosest.push_back(sorted[i]);
+    }
+    return nClosest;
 }
