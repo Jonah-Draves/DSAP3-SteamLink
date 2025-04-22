@@ -53,6 +53,13 @@ void GameMap::insert(vector<string> data) {
 
     // appID never empty hopefully, since it's in the csv file
     string appIDStr = data[0];
+    if (appIDStr.empty())
+        return;
+
+	// might be inappropriate game
+    int age = 17;
+    if (stoi(data[2]) > age)
+        return;
 
     // name may be empty?
     string nameStr;
@@ -65,20 +72,31 @@ void GameMap::insert(vector<string> data) {
     string catStr;
     string tagsStr;
     string genreStr;
-    if (!data[2].empty() || !data[3].empty() || !data[4].empty()) {
-        catStr = data[2];
-	genreStr = data[3];
-        tagsStr = data[4];
-        
+    if (!data[3].empty() || !data[4].empty() || !data[5].empty()) {
+        catStr = data[3];
+        genreStr = data[4];
+        tagsStr = data[5];
     }
     else
         return; // dont add game if tag AND screenshot empty
 
+	vector<string> catVec = splitList(catStr);
+    vector<string> genVec = splitList(genreStr);
+    vector<string> tagVec = splitList(tagsStr);
+    vector<string> censor = {"Hentai","Sexual Content"};
+
+    for (auto nonoword : censor) {
+        if (find(catVec.begin(),catVec.end(),nonoword)!=catVec.end() ||
+            find(genVec.begin(),genVec.end(),nonoword)!=genVec.end() ||
+            find(tagVec.begin(),tagVec.end(),nonoword)!=tagVec.end())
+            return;
+    }
+
     node.appID = appIDStr;
     node.name = nameStr;
-    node.category = splitList(catStr);
-    node.genre = splitList(genreStr);
-    node.tags = splitList(tagsStr);
+    node.category = catVec;
+    node.genre = genVec;
+    node.tags = tagVec;
 
     map[appIDStr] = node;
 
