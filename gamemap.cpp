@@ -109,6 +109,7 @@ int getSimilarity(const vector<string>& baseTags, const vector<string>& targetTa
                 continue;
             }
         }
+        similarity--;
         if (*baseIter < *targetIter) {
             baseIter++;
         }
