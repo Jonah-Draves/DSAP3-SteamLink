@@ -33,11 +33,15 @@ public:
 
     void insert(vector<string> data);
 
+    bool isNameIn(string name);
+
+    bool isIn(string appID);
+
     int getCount();
 
     vector<string> getAllTraits(string title);
 
-    vector<pair<string, int>> similarityList(string appid);
+    vector<pair<string, int>> similarityList(string name);
 
     vector<pair<string, int>> nClosest(string ID, int n, bool heapSort = true);
 };

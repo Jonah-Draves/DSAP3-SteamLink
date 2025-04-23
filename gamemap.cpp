@@ -103,6 +103,14 @@ void GameMap::insert(vector<string> data) {
     name2id[nameStr] = appIDStr;
 }
 
+bool GameMap::isNameIn(string name) {
+    return isIn(name2id[name]);
+}
+
+bool GameMap::isIn(string appID) {
+    return map.find(appID) != map.end();
+}
+
 int GameMap::getCount() {
     return map.size();
 }
@@ -206,7 +214,7 @@ vector<pair<string, int>> GameMap::similarityList(string name)
 
 vector<pair<string, int>> GameMap::nClosest(string targetID, int n, bool useHeap) {
     /*
-    Given a strong game ID, int number of closest games, and a bool to choose the number of closest games,
+    Given a string game ID, int number of closest games, and a bool to choose the number of closest games,
     returns the n closest games in terms of similarity score to that of the target.
     */
     vector<pair<string, int>> sorted;
